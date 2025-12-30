@@ -42,6 +42,18 @@ class LineComparison{
 			System.out.println("Both lines are not equal.");
 		}
 		
+		//check for equal,less or greater
+		int compare = compareLinesUsingCompareTo(lengthOfLineOne,lengthOfLineTwo);
+		if(compare == 0){
+			System.out.println("Both lines are equal.");
+		}
+		else if(compare > 0){
+			System.out.println("Line 1 is greater.");
+		}
+		else{
+			System.out.println("Line 2 is greater.");
+		}
+		
 		
 		//close scanner
 		input.close();
@@ -58,5 +70,10 @@ class LineComparison{
 			return true;
 		}
 		return false;
+	}
+	
+	//UC 3
+	static int compareLinesUsingCompareTo(Double lengthOne, Double lengthTwo){
+		return lengthOne.compareTo(lengthTwo);
 	}
 }

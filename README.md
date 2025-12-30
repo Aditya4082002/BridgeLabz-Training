@@ -12,5 +12,7 @@
 • 26-Dec-2025 (Friday): Completed and submitted Array problems.  
   
 • 27-Dec-2025 (Saturday): Completed  and submitted String problems.  
-
   
+• 29-Dec-2025 (Monday): subbmitted methods practice problems.  
+  
+• 30-Dec-2025 (Tuesday): completed all scenrio based problems.  

@@ -16,3 +16,5 @@
 • 29-Dec-2025 (Monday): subbmitted methods practice problems.  
   
 • 30-Dec-2025 (Tuesday): completed all scenrio based problems.  
+  
+• 31-Dec-2025 (Wednesday): Studied about class and object and  subbmitted class and object problems.

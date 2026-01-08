@@ -20,3 +20,15 @@
 • 31-Dec-2025 (Wednesday): Studied about class and object and  subbmitted class and object problems.  
 
 •1-Jan-2026 (Thrusday): Studied about this,final and static keywords  
+  
+•2-Jan-2026 (Friday): Studied about object oriented design principle.  
+  
+•3-Jan-2026 (Saturday): Studied inheritance and solved some problems on inheritance.  
+  
+•5-Jan-2026 (Monday):Studied other oops concepts.  
+  
+•6-Jan-2026 (Tuesday):Solved scenerio and leet code questions.  
+  
+•7-Jan-2026 (Wednesday): saolved more scenerio based questions.
+  
+•8-Jan-2026 (Thrusday): Studied Linked list and solved questions.

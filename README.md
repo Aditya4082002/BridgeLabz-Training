@@ -31,4 +31,11 @@
   
 •7-Jan-2026 (Wednesday): saolved more scenerio based questions.
   
-•8-Jan-2026 (Thrusday): Studied Linked list and solved questions.
+•8-Jan-2026 (Thrusday): Studied Linked list and solved questions.  
+
+•9-Jan-2026 (Friday): solved scenrio based problems - hospital management and vehicle rental system.  
+
+•12-Jan-2026 (Monday): solved more scenrio based problems on oops.  
+
+•13-Jan-2026 (Tuesday): studied and practice about merge conflict and practice other git and terminal commands.  
+

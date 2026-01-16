@@ -1,4 +1,5 @@
 # Daily Progress Log BridgeLabz-Training
+# Core-java  
 • 20-Dec-2025 (Saturday): Installed and setup notepad++ eclipse and java jdk and studied basics of java.  
   
 • 22-Dec-2025 (Monday): Studied about progamming elements in java.  
@@ -16,7 +17,9 @@
 • 29-Dec-2025 (Monday): subbmitted methods practice problems.  
   
 • 30-Dec-2025 (Tuesday): completed all scenrio based problems.  
-  
+
+# oops concept
+    
 • 31-Dec-2025 (Wednesday): Studied about class and object and  subbmitted class and object problems.  
 
 •1-Jan-2026 (Thrusday): Studied about this,final and static keywords  
@@ -29,7 +32,9 @@
   
 •6-Jan-2026 (Tuesday):Solved scenerio and leet code questions.  
   
-•7-Jan-2026 (Wednesday): saolved more scenerio based questions.
+•7-Jan-2026 (Wednesday): saolved more scenerio based questions.  
+  
+# DSA practice
   
 •8-Jan-2026 (Thrusday): Studied Linked list and solved questions.  
 

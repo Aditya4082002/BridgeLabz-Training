@@ -39,5 +39,7 @@
 
 •13-Jan-2026 (Tuesday): studied and practice about merge conflict and practice other git and terminal commands.  
 
-•14-Jan-2026 (Wednesday): studied about stack and queue.
+•14-Jan-2026 (Wednesday): studied about stack and queue.  
+  
+•15-Jan-2026 (Thursday): studied sorting algorithms.  
 

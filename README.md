@@ -48,3 +48,11 @@
   
 •15-Jan-2026 (Thursday): studied sorting algorithms.  
 
+•16-Jan-2026 (Friday): solved sorting alogrithim problems.  
+
+•19-Jan-2026 (Monday): studied linear search and binary search and solved problems based on them.
+
+•20-Jan-2026 (Tuesday): solved runtime analysis problems.
+
+•21-Jan-2026 (Wednesday): studied about generics.
+

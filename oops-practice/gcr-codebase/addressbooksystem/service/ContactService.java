@@ -10,6 +10,17 @@ public class ContactService {
 	
 	//method to add new contact
 	public void addNewContact(String firstName, String lastName, String address, String city, String state, String email, int zip, long phone) {
+		//Uc - 7
+		//validate
+		String name = firstName + " " + lastName;
+		for(Contact contact : contactRepo.getContact()) {
+			String current_name = contact.getFirstName() + " " + contact.getLastName();
+			if(name.equalsIgnoreCase(current_name)) {
+				System.out.println("already exist.");
+				return;
+			}
+			
+		}
 		
 		//create contact
 		Contact contact = new Contact(firstName,lastName,address,city,state,email,zip,phone);

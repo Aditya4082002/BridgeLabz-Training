@@ -54,5 +54,10 @@
 
 •20-Jan-2026 (Tuesday): solved runtime analysis problems.
 
-•21-Jan-2026 (Wednesday): studied about generics.
-
+•21-Jan-2026 (Wednesday): studied about generics.  
+  
+•22-Jan-2026 (Thrusday): studied about java collections.  
+  
+•23-Jan-2026 (Friday): solved problems on collections.  
+  
+•27-Jan-2026 (Monday):Studied about Exceptions and solved problems on them and solved Lexical Twist scenario based problem  

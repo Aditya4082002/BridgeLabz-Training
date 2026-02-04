@@ -1,0 +1,9 @@
+{
+  "name": "Aditya",
+  "age": 21,
+  "email": "aditya@example.com",
+  "address": {
+    "city": "Delhi",
+    "pincode": 110001
+  }
+}

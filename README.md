@@ -60,4 +60,14 @@
   
 •23-Jan-2026 (Friday): solved problems on collections.  
   
-•27-Jan-2026 (Monday):Studied about Exceptions and solved problems on them and solved Lexical Twist scenario based problem  
+•27-Jan-2026 (Tuesday):Studied about Exceptions and solved problems on them and solved Lexical Twist scenario based problem.  
+
+•28-Jan-2026 (Wednesday):Studied Regex and solved problems on them and solved Flip key scenario based problem.  
+  
+•30-Jan-2026 (Friday):studied about regex and solved problems on them.  
+  
+•2-Feb-2026 (Monday):studied about annotation reflection and solved problems on them.  
+  
+•3-Feb-2026 (Monday):studied about csv problems on them.  
+  
+•4-Feb-2026 (Monday):studied about functional interface,lamda expression,json and solved problems on them.  

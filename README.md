@@ -54,6 +54,8 @@
 
 •20-Jan-2026 (Tuesday): solved runtime analysis problems.
 
+# Collections and streams
+
 •21-Jan-2026 (Wednesday): studied about generics.  
   
 •22-Jan-2026 (Thrusday): studied about java collections.  
@@ -67,6 +69,8 @@
 •30-Jan-2026 (Friday):studied about regex and solved problems on them.  
   
 •2-Feb-2026 (Monday):studied about annotation reflection and solved problems on them.  
+
+# IO - Proramming
   
 •3-Feb-2026 (Monday):studied about csv problems on them.  
   

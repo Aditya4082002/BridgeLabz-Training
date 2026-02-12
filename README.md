@@ -72,6 +72,28 @@
 
 # IO - Proramming
   
-•3-Feb-2026 (Monday):studied about csv problems on them.  
+•3-Feb-2026 (Monday): studied about csv problems on them.  
   
-•4-Feb-2026 (Monday):studied about functional interface,lamda expression,json and solved problems on them.  
+•4-Feb-2026 (Tuesday): studied about json problems on them.  
+
+# Java 8 & its features
+  
+•5-Feb-2026 (Wednesday): studied about functional interface,lamda expression,json and solved problems on them .  
+  
+•6-Feb-2026 (Thrusday): studied about stream api problems on them.  
+  
+•7-Feb-2026 (Friday): studied about collectors problems on them.  
+
+# Solution designing
+  
+•9-Feb-2026 (Monday):studied about design principle and patterns problems on them.  
+
+# Multi Therading
+  
+•10-Feb-2026 (Tuesday):studied about multi threading problems on them.  
+
+# JDBC & DBMS
+  
+•11-Feb-2026 (Monday):studied about dbms problems on them.  
+  
+

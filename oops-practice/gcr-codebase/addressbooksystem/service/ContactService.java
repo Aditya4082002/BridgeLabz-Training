@@ -138,6 +138,43 @@ public class ContactService {
 
 		return contacts.size();
 	}
+	
+	//sort by name
+	public void sortByName() {
+		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator
+				.comparing(Contact :: getFirstName, String.CASE_INSENSITIVE_ORDER)
+				.thenComparing(Contact :: getLastName,String.CASE_INSENSITIVE_ORDER)
+		);
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
+	
+	//sort by city
+	public void sortByCity() {
+		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact :: getCity, String.CASE_INSENSITIVE_ORDER));
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
+	//sort by state
+	public void sortByState() {
+		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact :: getState, String.CASE_INSENSITIVE_ORDER));
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
+	//sort by zip
+	public void sortByZip() {
+		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact :: getZip));
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
 
 	// method to display all contacts
 	public void displayAllContacts() {

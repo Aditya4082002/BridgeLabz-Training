@@ -99,8 +99,12 @@ public class AddressBookUI{
 			System.out.println("5 - View Persons by city.");
 			System.out.println("6 - View Persons by state.");
 			System.out.println("7 - Count Persons by city.");
-			System.out.println("8 - Count Persons by state");
-			System.out.println("9 - Back");
+			System.out.println("8 - Count Persons by state.");
+			System.out.println("9 - Sort by name.");
+			System.out.println("10 - Sort by city.");
+			System.out.println("11 - Sort by state.");
+			System.out.println("12 - Sort by zip.");
+			System.out.println("13 - Back");
 			System.out.println("-----------------------------");
 
             System.out.println("Enter your chooice : ");
@@ -134,13 +138,45 @@ public class AddressBookUI{
 			case 8:
 				countByState(service);
 				break;
+			//UC - 11
 			case 9:
+				sortByName(service);
+				break;
+			//UC -12
+			case 10:
+				sortByCity(service);
+				break;
+			case 11:
+				sortByState(service);
+				break;
+			case 12:
+				sortByZip(service);
+				break;
+			case 13:
 				return;
 			default:
 				System.out.println("Invalid input.");
 		}
         }
     }
+	
+	//sort by city
+	public void sortByCity(ContactService service) {
+		service.sortByCity();
+	}
+	//sort by state
+	public void sortByState(ContactService service) {
+		service.sortByState();
+	}
+	//sort by zip
+	public void sortByZip(ContactService service) {
+		service.sortByZip();
+	}
+	
+	//sort by name
+	public void sortByName(ContactService service) {
+		service.sortByName();
+	}
 	
 	//count persons by city
 	public void countByCity(ContactService service) {

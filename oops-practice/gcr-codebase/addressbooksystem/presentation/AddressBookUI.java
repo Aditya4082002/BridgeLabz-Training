@@ -5,8 +5,7 @@ import addressbooksystem.service.AddressBookService;
 
 public class AddressBookUI{
 	Scanner input = new Scanner(System.in);
-	private final AddressBookService Addressbookservice = new AddressBookService();
-	ContactService service = new ContactService();
+	private final AddressBookService addressbookservice = new AddressBookService();
 	public void startApp() {
 		boolean running = true;
 		int choice;
@@ -17,9 +16,10 @@ public class AddressBookUI{
 			System.out.println("-----------------------------");
 			System.out.println("Options : ");
 			System.out.println("1. Create Address Book.");
-			System.out.println("2. Open Address Book");
+			System.out.println("2. Open Address Book.");
 			System.out.println("3. Show All Address book.");
-			System.out.println("4. Exit.");
+			System.out.println("4. Search Person by city/state.");
+			System.out.println("5. Exit.");
 			System.out.println("-----------------------------");
 			
 			System.out.println("Enter your chooice : ");
@@ -34,9 +34,13 @@ public class AddressBookUI{
             	 openAddressBook();
             	 break;
              case 3 :
-            	 Addressbookservice.showAllAddressBooks();
+            	 addressbookservice.showAllAddressBooks();
             	 break;
-             case 4 :
+             //UC - 8
+             case 4: 
+            	 searchPersonByCityOrState();
+            	 break;
+             case 5 :
             	 System.out.println("Thanks for using Address Book App.");
             	 running = false;
             	 break;
@@ -47,12 +51,19 @@ public class AddressBookUI{
 		}
 	}
 	
+	//search person by city or state
+	private void searchPersonByCityOrState() {
+		System.out.println("Enter city or state name : ");
+		String value = input.nextLine();
+		addressbookservice.searchPersonByCityorState(value);
+	}
+	
 	//create address book
 	private void createAddressBook() {
         System.out.print("Enter new Address Book name: ");
         String name = input.nextLine();
 
-        if (Addressbookservice.createAddressBook(name)) {
+        if (addressbookservice.createAddressBook(name)) {
             System.out.println("Address Book created successfully!");
         } else {
             System.out.println("Address Book with this name already exists!");
@@ -64,12 +75,12 @@ public class AddressBookUI{
         System.out.print("Enter Address Book name to open: ");
         String name = input.nextLine();
 
-        if (!Addressbookservice.addressBookExists(name)) {
+        if (!addressbookservice.addressBookExists(name)) {
             System.out.println("Address Book not found!");
             return;
         }
 
-        ContactService contactService = Addressbookservice.getAddressBook(name);
+        ContactService contactService = addressbookservice.getAddressBook(name);
         addressBookMenu(contactService);
     }
 	
@@ -85,7 +96,11 @@ public class AddressBookUI{
 			System.out.println("2 - Edit Contact.");
 			System.out.println("3 - Delete Contact.");
 			System.out.println("4 - Display All Contacts.");
-			System.out.println("5 - Back");
+			System.out.println("5 - View Persons by city.");
+			System.out.println("6 - View Persons by state.");
+			System.out.println("7 - Count Persons by city.");
+			System.out.println("8 - Count Persons by state");
+			System.out.println("9 - Back");
 			System.out.println("-----------------------------");
 
             System.out.println("Enter your chooice : ");
@@ -94,18 +109,32 @@ public class AddressBookUI{
 
 			switch(choice) {
 			case 1:
-				addContactFromUser();
+				addContactFromUser(service);
 				break;
 			case 2:
-				editContact();
+				editContact(service);
 				break;
 			case 3:
-				deleteContactByName();
+				deleteContactByName(service);
 				break;
 			case 4:
-				displayContacts();
+				displayContacts(service);
 				break;
+			//UC - 9
 			case 5:
+				viewPersonsByCity(service);
+				break;
+			case 6:
+				viewPersonsByState(service);
+				break;
+			//UC - 10
+			case 7:
+				countByCity(service);
+				break;
+			case 8:
+				countByState(service);
+				break;
+			case 9:
 				return;
 			default:
 				System.out.println("Invalid input.");
@@ -113,8 +142,38 @@ public class AddressBookUI{
         }
     }
 	
+	//count persons by city
+	public void countByCity(ContactService service) {
+		System.out.println("Enter city: ");
+		String city = input.nextLine();
+		int count = service.countByCity(city);
+		System.out.println("Number of persons in " + city + " : " + count);
+	}
+	
+	//count persons by state
+	public void countByState(ContactService service) {
+		System.out.println("Enter state: ");
+		String state = input.nextLine();
+		int count  = service.countByState(state);
+		System.out.println("Number of persons in " + state + " : " + count);
+	}
+	
+	//view persons by city
+	public void viewPersonsByCity(ContactService service){
+		System.out.println("Enter City to view contacts : ");
+		String city = input.nextLine();
+		service.displayPersonsByCity(city);
+	}
+	
+	//view persons by state
+	public void viewPersonsByState(ContactService service) {
+		System.out.println("Enter City to view contacts : ");
+		String state = input.nextLine();
+		service.displayPersonsByState(state);
+	}
+	
 	//Add contacts 
-	public void addContactFromUser() {
+	public void addContactFromUser(ContactService service) {
 		//take user input
 		System.out.println("Enter First Name : ");
 		String firstName = input.nextLine();
@@ -138,7 +197,7 @@ public class AddressBookUI{
 	}
 	
 	//Edit Contacts
-	public void editContact() {
+	public void editContact(ContactService service) {
 		
 		System.out.println("Enter name to edit :");
 		String name = input.nextLine();
@@ -162,11 +221,11 @@ public class AddressBookUI{
 		long phone = input.nextLong();
 		input.nextLine();//consume extra line
 		
-		service.editExixtingContact(name,firstName, lastName, address, city, state, email, zip, phone);
+		service.editExistingContact(name,firstName, lastName, address, city, state, email, zip, phone);
 	}
 	
 	//delete contact
-	public void deleteContactByName() {
+	public void deleteContactByName(ContactService service) {
 		System.out.println("Enter name to delete.");
 		String name = input.nextLine();
 		service.deleteContact(name);
@@ -174,7 +233,7 @@ public class AddressBookUI{
 	}
 
 	//Display contacts
-	public void displayContacts() {
+	public void displayContacts(ContactService service) {
 		service.displayAllContacts();
 	}
 }

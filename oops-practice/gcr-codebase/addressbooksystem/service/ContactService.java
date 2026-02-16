@@ -1,39 +1,46 @@
 package addressbooksystem.service;
-import addressbooksystem.repository.*;
 
+import addressbooksystem.repository.*;
+import addressbooksystem.model.Contact;
 import addressbooksystem.model.*;
 import java.util.*;
 
-
 public class ContactService {
 	ContactRepository contactRepo = new ContactRepository();
-	
-	//method to add new contact
-	public void addNewContact(String firstName, String lastName, String address, String city, String state, String email, int zip, long phone) {
-		//Uc - 7
-		//validate
+	private Map<String, List<Contact>> cityMap = new HashMap<>();
+	private Map<String, List<Contact>> stateMap = new HashMap<>();
+
+	// method to add new contact
+	public void addNewContact(String firstName, String lastName, String address, String city, String state,
+			String email, int zip, long phone) {
+		// Uc - 7
+		// validate
 		String name = firstName + " " + lastName;
-		for(Contact contact : contactRepo.getContact()) {
+		for (Contact contact : contactRepo.getContact()) {
 			String current_name = contact.getFirstName() + " " + contact.getLastName();
-			if(name.equalsIgnoreCase(current_name)) {
+			if (name.equalsIgnoreCase(current_name)) {
 				System.out.println("already exist.");
 				return;
 			}
-			
+
 		}
-		
-		//create contact
-		Contact contact = new Contact(firstName,lastName,address,city,state,email,zip,phone);
+
+		// create contact
+		Contact contact = new Contact(firstName, lastName, address, city, state, email, zip, phone);
 		contactRepo.addContact(contact);
-		
+		// add contacts to maps
+		cityMap.computeIfAbsent(city.toLowerCase(), k -> new ArrayList<>()).add(contact);
+		stateMap.computeIfAbsent(state.toLowerCase(), k -> new ArrayList<>()).add(contact);
+
 		System.out.println("contact added successfully.");
-	}	
-	
-	//edit contact
-	public void editExixtingContact(String name,String firstName, String lastName, String address, String city, String state, String email, int zip, long phone) {
+	}
+
+	// edit contact
+	public void editExistingContact(String name, String firstName, String lastName, String address, String city,
+			String state, String email, int zip, long phone) {
 		List<Contact> contacts = contactRepo.getContact();
-		for(Contact contact : contacts) {
-			if(contact.getFirstName().equals(name)){
+		for (Contact contact : contacts) {
+			if (contact.getFirstName().equals(name)) {
 				contact.setAddress(address);
 				contact.setCity(city);
 				contact.setEmail(email);
@@ -42,38 +49,102 @@ public class ContactService {
 				contact.setPhone(phone);
 				contact.setState(state);
 				contact.setZip(zip);
-			}else {
+			} else {
 				System.out.println("Contact not found.");
 			}
 		}
 	}
-	
+
 	//
 	public void deleteContact(String name) {
-		
-		contactRepo.deleteContact(findContactByName(name));
+
+		// remove from repo
+		Contact existingContact = findContactByName(name);
+
+		// remove from city map
+		String city = existingContact.getCity();
+		List<Contact> cityContact = cityMap.get(city.toLowerCase());
+		cityContact.remove(existingContact);
+
+		// remove from satte map
+		String state = existingContact.getState();
+		List<Contact> stateContact = stateMap.get(state.toLowerCase());
+		stateContact.remove(existingContact);
+
+		contactRepo.deleteContact(existingContact);
+
 	}
-	//find contact
+
+	// find contact
 	public Contact findContactByName(String name) {
 		List<Contact> contacts = contactRepo.getContact();
-		for(Contact contact : contacts) {
-			if(contact.getFirstName().equals(name)) {
+		for (Contact contact : contacts) {
+			if (contact.getFirstName().equals(name)) {
 				return contact;
 			}
 		}
 		System.out.println("Contact not found.");
 		return null;
-		
+
 	}
 
-	
-	//method to display all contacts
-	public void displayAllContacts() {
-		List<Contact> contacts = contactRepo.getContact(); 
-		for(Contact contact : contacts) {
+	// method to get all contacts
+	public List<Contact> getAllContacts() {
+		return contactRepo.getContact();
+	}
+
+	public void displayPersonsByCity(String city) {
+		List<Contact> contacts = cityMap.get(city);
+		if (contacts == null || contacts.isEmpty()) {
+			System.out.println("No contacts found");
+			return;
+		}
+		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
 	}
-	
-	
+
+	public void displayPersonsByState(String state) {
+		List<Contact> contacts = cityMap.get(state);
+		if (contacts == null || contacts.isEmpty()) {
+			System.out.println("No contacts found");
+			return;
+		}
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
+
+	// Count contacts by city
+	public int countByCity(String city) {
+		String cityKey = city.toLowerCase();
+		List<Contact> contacts = cityMap.get(cityKey);
+
+		if (contacts == null) {
+			return 0;
+		}
+		return contacts.size();
+	}
+
+	// Count contacts by State
+	public int countByState(String state) {
+
+		String stateKey = state.toLowerCase();
+		List<Contact> contacts = stateMap.get(stateKey);
+
+		if (contacts == null) {
+			return 0;
+		}
+
+		return contacts.size();
+	}
+
+	// method to display all contacts
+	public void displayAllContacts() {
+		List<Contact> contacts = contactRepo.getContact();
+		for (Contact contact : contacts) {
+			System.out.println(contact.toString());
+		}
+	}
+
 }

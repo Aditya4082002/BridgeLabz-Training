@@ -104,7 +104,11 @@ public class AddressBookUI{
 			System.out.println("10 - Sort by city.");
 			System.out.println("11 - Sort by state.");
 			System.out.println("12 - Sort by zip.");
-			System.out.println("13 - Back");
+			System.out.println("13 - Save to file.");
+			System.out.println("14 - Load from file.");
+			System.out.println("15 - Save to csv");
+			System.out.println("16 - Load from csv");
+			System.out.println("0 - Back");
 			System.out.println("-----------------------------");
 
             System.out.println("Enter your chooice : ");
@@ -152,13 +156,50 @@ public class AddressBookUI{
 			case 12:
 				sortByZip(service);
 				break;
+			//UC - 13
 			case 13:
+				saveToFile(service);
+				break;
+			case 14:
+				loadFromFile(service);
+				break;
+			//UC - 14
+			case 15:
+				saveToCSV(service);
+				break;
+			case 16:
+				loadFromCSV(service);
+				break;
+			case 0:
 				return;
 			default:
 				System.out.println("Invalid input.");
 		}
         }
     }
+	//save to csv
+	public void saveToCSV(ContactService service) {
+		String filePath = "addressbook.csv";
+		service.saveToCSV(filePath);
+	}
+	
+	//load from csv
+	public void loadFromCSV(ContactService service) {
+		String filePath = "addressbook.csv";
+		service.loadFromCSV(filePath);
+	}
+	
+	//load form file
+	public void loadFromFile(ContactService service) {
+		String filePath = "addressbook.txt";
+		service.loadFromFile(filePath);
+	}
+	
+	//save to file
+	public void saveToFile(ContactService service) {
+		String filePath = "addressbook.txt";
+		service.saveToFile(filePath);
+	}
 	
 	//sort by city
 	public void sortByCity(ContactService service) {

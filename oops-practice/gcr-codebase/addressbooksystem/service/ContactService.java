@@ -3,6 +3,12 @@ package addressbooksystem.service;
 import addressbooksystem.repository.*;
 import addressbooksystem.model.Contact;
 import addressbooksystem.model.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class ContactService {
@@ -92,7 +98,8 @@ public class ContactService {
 	public List<Contact> getAllContacts() {
 		return contactRepo.getContact();
 	}
-
+	
+	//display person by city
 	public void displayPersonsByCity(String city) {
 		List<Contact> contacts = cityMap.get(city);
 		if (contacts == null || contacts.isEmpty()) {
@@ -104,6 +111,7 @@ public class ContactService {
 		}
 	}
 
+	//display persons by state
 	public void displayPersonsByState(String state) {
 		List<Contact> contacts = cityMap.get(state);
 		if (contacts == null || contacts.isEmpty()) {
@@ -180,8 +188,118 @@ public class ContactService {
 	public void displayAllContacts() {
 		List<Contact> contacts = contactRepo.getContact();
 		for (Contact contact : contacts) {
+			System.out.println("-----------------------------");
 			System.out.println(contact.toString());
+			System.out.println("-----------------------------");
 		}
+	}
+	
+	//save to csv
+	public void saveToCSV(String fileName) {
+
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+	        for (Contact contact : contactRepo.getContact()) {
+
+	            String line = contact.getFirstName() + "," +
+	                          contact.getLastName() + "," +
+	                          contact.getAddress() + "," +
+	                          contact.getCity() + "," +
+	                          contact.getState() + "," +
+	                          contact.getEmail() + "," +
+	                          contact.getZip() + "," +
+	                          contact.getPhone();
+
+	            writer.write(line);
+	            writer.newLine();
+	        }
+
+	        System.out.println("Contacts saved successfully to csv file.");
+
+	    } catch (IOException e) {
+	        System.out.println("Error writing file: " + e.getMessage());
+	    }
+	}
+	
+	//save to file
+	public void saveToFile(String fileName) {
+
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+	        for (Contact contact : contactRepo.getContact()) {
+
+	            String line = contact.getFirstName() + "|" +
+	                          contact.getLastName() + "|" +
+	                          contact.getAddress() + "|" +
+	                          contact.getCity() + "|" +
+	                          contact.getState() + "|" +
+	                          contact.getEmail() + "|" + 
+	                          contact.getZip() + "|" +
+	                          contact.getPhone();
+
+	            writer.write(line);
+	            writer.newLine();
+	        }
+
+	        System.out.println("Contacts saved successfully to file.");
+
+	    } catch (IOException e) {
+	        System.out.println("Error writing file: " + e.getMessage());
+	    }
+	}
+	
+	//load from csv
+	public void loadFromCSV(String fileName) {
+
+	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+
+	        String line;
+
+	        while ((line = reader.readLine()) != null) {
+
+	            String[] parts = line.split(",");
+
+	            if (parts.length == 8) {
+	            	Contact contact = new Contact( parts[0], parts[1], parts[2],parts[3], 
+	            			parts[4], parts[5],
+	            			Integer.parseInt(parts[6]), 
+	            			Long.parseLong(parts[7]));
+	                contactRepo.addContact(contact);
+	            }
+	        }
+
+	        System.out.println("Contacts loaded successfully from csv file.");
+
+	    } catch (IOException e) {
+	        System.out.println("Error reading file: " + e.getMessage());
+	    }
+	}
+	
+	//load from file
+	public void loadFromFile(String fileName) {
+
+	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+
+	        String line;
+
+	        while ((line = reader.readLine()) != null) {
+
+	            String[] parts = line.split("\\|");
+
+	            if (parts.length == 8) {
+	            	Contact contact = new Contact( parts[0], parts[1], parts[2],parts[3], 
+	            			parts[4], parts[5],
+	            			Integer.parseInt(parts[6]), 
+	            			Long.parseLong(parts[7]));
+	                contactRepo.addContact(contact);
+	            }
+	        }
+
+	        System.out.println("Contacts loaded successfully from file.");
+
+	    } catch (IOException e) {
+	        System.out.println("Error reading file: " + e.getMessage());
+	    }
 	}
 
 }

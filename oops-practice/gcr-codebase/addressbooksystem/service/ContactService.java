@@ -98,8 +98,8 @@ public class ContactService {
 	public List<Contact> getAllContacts() {
 		return contactRepo.getContact();
 	}
-	
-	//display person by city
+
+	// display person by city
 	public void displayPersonsByCity(String city) {
 		List<Contact> contacts = cityMap.get(city);
 		if (contacts == null || contacts.isEmpty()) {
@@ -111,7 +111,7 @@ public class ContactService {
 		}
 	}
 
-	//display persons by state
+	// display persons by state
 	public void displayPersonsByState(String state) {
 		List<Contact> contacts = cityMap.get(state);
 		if (contacts == null || contacts.isEmpty()) {
@@ -146,39 +146,39 @@ public class ContactService {
 
 		return contacts.size();
 	}
-	
-	//sort by name
+
+	// sort by name
 	public void sortByName() {
-		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
-		contacts.sort(Comparator
-				.comparing(Contact :: getFirstName, String.CASE_INSENSITIVE_ORDER)
-				.thenComparing(Contact :: getLastName,String.CASE_INSENSITIVE_ORDER)
-		);
+		List<Contact> contacts = new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact::getFirstName, String.CASE_INSENSITIVE_ORDER)
+				.thenComparing(Contact::getLastName, String.CASE_INSENSITIVE_ORDER));
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
 	}
-	
-	//sort by city
+
+	// sort by city
 	public void sortByCity() {
-		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
-		contacts.sort(Comparator.comparing(Contact :: getCity, String.CASE_INSENSITIVE_ORDER));
+		List<Contact> contacts = new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact::getCity, String.CASE_INSENSITIVE_ORDER));
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
 	}
-	//sort by state
+
+	// sort by state
 	public void sortByState() {
-		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
-		contacts.sort(Comparator.comparing(Contact :: getState, String.CASE_INSENSITIVE_ORDER));
+		List<Contact> contacts = new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact::getState, String.CASE_INSENSITIVE_ORDER));
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
 	}
-	//sort by zip
+
+	// sort by zip
 	public void sortByZip() {
-		List<Contact> contacts =new ArrayList<>(contactRepo.getContact());
-		contacts.sort(Comparator.comparing(Contact :: getZip));
+		List<Contact> contacts = new ArrayList<>(contactRepo.getContact());
+		contacts.sort(Comparator.comparing(Contact::getZip));
 		for (Contact contact : contacts) {
 			System.out.println(contact.toString());
 		}
@@ -193,113 +193,177 @@ public class ContactService {
 			System.out.println("-----------------------------");
 		}
 	}
-	
-	//save to csv
+
+	// save to csv
 	public void saveToCSV(String fileName) {
 
-	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
-	        for (Contact contact : contactRepo.getContact()) {
+			for (Contact contact : contactRepo.getContact()) {
 
-	            String line = contact.getFirstName() + "," +
-	                          contact.getLastName() + "," +
-	                          contact.getAddress() + "," +
-	                          contact.getCity() + "," +
-	                          contact.getState() + "," +
-	                          contact.getEmail() + "," +
-	                          contact.getZip() + "," +
-	                          contact.getPhone();
+				String line = contact.getFirstName() + "," + contact.getLastName() + "," + contact.getAddress() + ","
+						+ contact.getCity() + "," + contact.getState() + "," + contact.getEmail() + ","
+						+ contact.getZip() + "," + contact.getPhone();
 
-	            writer.write(line);
-	            writer.newLine();
-	        }
+				writer.write(line);
+				writer.newLine();
+			}
 
-	        System.out.println("Contacts saved successfully to csv file.");
+			System.out.println("Contacts saved successfully to csv file.");
 
-	    } catch (IOException e) {
-	        System.out.println("Error writing file: " + e.getMessage());
-	    }
+		} catch (IOException e) {
+			System.out.println("Error writing file: " + e.getMessage());
+		}
 	}
-	
-	//save to file
-	public void saveToFile(String fileName) {
 
-	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+	// save to file
+//	public void saveToFile(String fileName) {
+//
+//	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+//
+//	        for (Contact contact : contactRepo.getContact()) {
+//
+//	            String line = contact.getFirstName() + "|" +
+//	                          contact.getLastName() + "|" +
+//	                          contact.getAddress() + "|" +
+//	                          contact.getCity() + "|" +
+//	                          contact.getState() + "|" +
+//	                          contact.getEmail() + "|" + 
+//	                          contact.getZip() + "|" +
+//	                          contact.getPhone();
+//
+//	            writer.write(line);
+//	            writer.newLine();
+//	        }
+//
+//	        System.out.println("Contacts saved successfully to file.");
+//
+//	    } catch (IOException e) {
+//	        System.out.println("Error writing file: " + e.getMessage());
+//	    }
+//	}
 
-	        for (Contact contact : contactRepo.getContact()) {
-
-	            String line = contact.getFirstName() + "|" +
-	                          contact.getLastName() + "|" +
-	                          contact.getAddress() + "|" +
-	                          contact.getCity() + "|" +
-	                          contact.getState() + "|" +
-	                          contact.getEmail() + "|" + 
-	                          contact.getZip() + "|" +
-	                          contact.getPhone();
-
-	            writer.write(line);
-	            writer.newLine();
-	        }
-
-	        System.out.println("Contacts saved successfully to file.");
-
-	    } catch (IOException e) {
-	        System.out.println("Error writing file: " + e.getMessage());
-	    }
-	}
-	
-	//load from csv
+	// load from csv
 	public void loadFromCSV(String fileName) {
 
-	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-	        String line;
+			String line;
 
-	        while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null) {
 
-	            String[] parts = line.split(",");
+				String[] parts = line.split(",");
 
-	            if (parts.length == 8) {
-	            	Contact contact = new Contact( parts[0], parts[1], parts[2],parts[3], 
-	            			parts[4], parts[5],
-	            			Integer.parseInt(parts[6]), 
-	            			Long.parseLong(parts[7]));
-	                contactRepo.addContact(contact);
-	            }
-	        }
+				if (parts.length == 8) {
+					Contact contact = new Contact(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5],
+							Integer.parseInt(parts[6]), Long.parseLong(parts[7]));
+					contactRepo.addContact(contact);
+				}
+			}
 
-	        System.out.println("Contacts loaded successfully from csv file.");
+			System.out.println("Contacts loaded successfully from csv file.");
 
-	    } catch (IOException e) {
-	        System.out.println("Error reading file: " + e.getMessage());
-	    }
+		} catch (IOException e) {
+			System.out.println("Error reading file: " + e.getMessage());
+		}
 	}
+
+	// load from file
+//	public void loadFromFile(String fileName) {
+//
+//	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+//
+//	        String line;
+//
+//	        while ((line = reader.readLine()) != null) {
+//
+//	            String[] parts = line.split("\\|");
+//
+//	            if (parts.length == 8) {
+//	            	Contact contact = new Contact( parts[0], parts[1], parts[2],parts[3], 
+//	            			parts[4], parts[5],
+//	            			Integer.parseInt(parts[6]), 
+//	            			Long.parseLong(parts[7]));
+//	                contactRepo.addContact(contact);
+//	            }
+//	        }
+//
+//	        System.out.println("Contacts loaded successfully from file.");
+//
+//	    } catch (IOException e) {
+//	        System.out.println("Error reading file: " + e.getMessage());
+//	    }
+//	}
 	
+	//UC - 17
+	//save to file
+	public void saveToFileAsync(String fileName) {
+
+		Runnable saveTask = new Runnable() {
+
+			@Override
+			public void run() {
+
+				try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+					for (Contact contact : contactRepo.getContact()) {
+
+						String line = contact.getFirstName() + "|" + contact.getLastName() + "|" + contact.getAddress()
+								+ "|" + contact.getCity() + "|" + contact.getState() + "|" + contact.getEmail() + "|"
+								+ contact.getZip() + "|" + contact.getPhone();
+
+						writer.write(line);
+						writer.newLine();
+					}
+
+					System.out.println("Contacts saved successfully (Background Thread).");
+
+				} catch (IOException e) {
+					System.out.println("Error writing file: " + e.getMessage());
+				}
+			}
+		};
+
+		Thread thread = new Thread(saveTask);
+		thread.start();
+
+		System.out.println("Save operation started in background...");
+	}
+
 	//load from file
-	public void loadFromFile(String fileName) {
+	public void loadFromFileAsync(String fileName) {
 
-	    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+		Runnable loadTask = new Runnable() {
 
-	        String line;
+			@Override
+			public void run() {
 
-	        while ((line = reader.readLine()) != null) {
+				try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-	            String[] parts = line.split("\\|");
+					String line;
 
-	            if (parts.length == 8) {
-	            	Contact contact = new Contact( parts[0], parts[1], parts[2],parts[3], 
-	            			parts[4], parts[5],
-	            			Integer.parseInt(parts[6]), 
-	            			Long.parseLong(parts[7]));
-	                contactRepo.addContact(contact);
-	            }
-	        }
+					while ((line = reader.readLine()) != null) {
 
-	        System.out.println("Contacts loaded successfully from file.");
+						String[] parts = line.split("\\|");
 
-	    } catch (IOException e) {
-	        System.out.println("Error reading file: " + e.getMessage());
-	    }
+						if (parts.length == 8) {
+							Contact contact = new Contact(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5],
+									Integer.parseInt(parts[6]), Long.parseLong(parts[7]));
+							contactRepo.addContact(contact);
+						}
+					}
+					System.out.println("Contacts loaded successfully (Background Thread).");
+
+				} catch (IOException e) {
+					System.out.println("Error reading file: " + e.getMessage());
+				}
+			}
+		};
+
+		Thread thread = new Thread(loadTask);
+		thread.start();
+
+		System.out.println("Load operation started in background...");
 	}
 
 }

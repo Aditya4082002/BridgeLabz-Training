@@ -192,13 +192,13 @@ public class AddressBookUI{
 	//load form file
 	public void loadFromFile(ContactService service) {
 		String filePath = "addressbook.txt";
-		service.loadFromFile(filePath);
+		service.loadFromFileAsync(filePath);
 	}
 	
 	//save to file
 	public void saveToFile(ContactService service) {
 		String filePath = "addressbook.txt";
-		service.saveToFile(filePath);
+		service.saveToFileAsync(filePath);
 	}
 	
 	//sort by city

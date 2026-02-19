@@ -94,6 +94,11 @@
 
 # JDBC & DBMS
   
-•11-Feb-2026 (Monday):studied about dbms problems on them.  
+•11-Feb-2026 (Wednesday):studied about dbms problems on them.  
   
+•12-Feb-2026 (Thursday): started working on Health clinic application.  
+  
+•17-Feb-2026 (Tuesday): Solved wage compuputation scenario-based problem.  
+  
+•18-Feb-2026 (Wednesday): Completed address book system(UC-8 to UC-18).  
 
